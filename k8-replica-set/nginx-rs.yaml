@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+ replicas: 2
+ selector:
+        matchLabels: # used when there is only one key value
+          app: nginx-app
+        matchExpressions: # used when there are many matches found 
+          - {key: tier, operator: In, values: [frontend]}
+ template:
+    metadata: 
+      name: nginx-pod
+      labels:
+         app: nginx-app
+         tier: frontend
+    spec:
+        containers:
+        - name: nginx-container
+          image: subha28/nginx
+          ports:
+          - containerPort: 80 

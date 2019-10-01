@@ -1,0 +1,17 @@
+---
+version: '2'
+services:
+  db:
+     image: mysql
+     container_name: mysql_db
+     restart: always
+     environment:
+        - MYSQL_ROOT_PASSWORD="secret"
+  web:
+    image: drupal
+    depends_on:
+       - db
+    container_name: my_drupal
+    restart: always
+    ports:
+      - "8099:80"

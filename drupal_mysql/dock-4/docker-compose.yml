@@ -1,0 +1,15 @@
+---
+version: "2"
+services:
+   app:
+    container_name: my_drupal_1
+    build: ./drupal
+   # image: drupal
+    ports:
+      - "8099:80"
+   my_sql:
+     container_name: my_sql_1
+     image: mysql
+     environment: 
+      - MYSQL_ROOT_PASSWORD="subha"
+   
